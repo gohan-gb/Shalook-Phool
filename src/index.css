@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mukta:wght@200;300;400;500;600;700;800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +8,41 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", serif;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kalpanaAnsi';
+  src: url('/fonts/Kalpana-ANSI.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'kalpanaUnicode';
+  src: url('/fonts/Kalpana-UNICODE.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@layer base {
+  body {
+    @apply bg-background
+  }
+}
+
+.h1{
+  @apply text-6xl sm:text-8xl font-bold
+}
+
+.heading{
+  @apply text-4xl font-semibold
+}
+
+.subheading{
+  @apply text-2xl font-semibold
+}
+
+.p{
+  @apply text-xl
 }
