@@ -1,10 +1,13 @@
 import React from "react";
 import MarginWrapper from "./common/MarginWrapper";
+import Navbar from "./common/Navbar";
 
 function App() {
   return (
     <>
-      <div>
+
+    <Navbar />
+      {/* <div>
         <nav className=" bg-[#3A7D44] w-[100%] h-16 fixed text-white">
           hey
         </nav>
@@ -54,7 +57,7 @@ function App() {
         <footer className="bg-green text-white w-[100%] h-48 sticky bottom-0 left-0 right-0">
           hi
         </footer>
-      </div>
+      </div> */}
     </>
   );
 }
