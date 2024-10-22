@@ -1,12 +1,28 @@
 import React from "react";
-import MarginWrapper from "./common/MarginWrapper";
+import { Route, Routes } from 'react-router-dom'
 import Navbar from "./common/Navbar";
+import Footer from "./common/Footer";
+import Home from "./pages/home/Home"
+import Products from "./pages/products/Products"
+import About from "./pages/about/About"
+import Gallery from "./pages/gallery/Gallery"
+import Order from "./pages/order/Order"
 
 function App() {
   return (
     <>
 
     <Navbar />
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/order" element={<Order />} />
+      </Routes>
+    </main>
+    <Footer />
       {/* <div>
         <nav className=" bg-[#3A7D44] w-[100%] h-16 fixed text-white">
           hey

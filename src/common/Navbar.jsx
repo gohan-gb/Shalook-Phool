@@ -25,6 +25,7 @@ const Navbar = () => {
         <div className="bg-green w-[100%] h-auto text-white fixed">
           <img
             src="/assets/alpona_2345.png"
+            loading="lazy"
             alt="line-art"
             className="w-32 absolute top-0 left-8 sm:left-0"
           />
@@ -65,21 +66,18 @@ const Navbar = () => {
                   className=" absolute top-10 left-5 sm:left-32 flex justify-start sm:justify-center items-center "
                 >
                   <CiMenuBurger size="36px" />
-                  {/* {
-                    hamburger ? (<CiMenuBurger size="36px" />) : (<RxCross1 size="36px" />)
-                  } */}
                 </button>
               </section>
 
               <section className="w-[33%] flex justify-center ">
                 <Link to={"/"}>
-                  <img src="/assets/Logo.png" className="w-20" alt="logo" />
+                  <img src="/assets/Logo.png" 
+                  loading="lazy"
+                  className="w-20" 
+                  alt="logo" />
                 </Link>
               </section>
               <section className="w-[33%] flex justify-end">
-                {/* <input type="text"
-            className#001800] p-px rounded-sm '
-            placeholder='Search for a product' /> */}
                 <ul className="flex  gap-20 items-center sm:mr-24 lg:mr-0">
                   <NavLink
                     to="/order"
@@ -95,13 +93,6 @@ const Navbar = () => {
                   <button>
                     <CiSearch onClick={handleSearch} size="36px" />
                   </button>
-
-                  {/* <li> 
-                    <input type="text"
-                          className="p-px rounded-sm h-12 border-solid border-[1px] border-[#001800] max-w-32 text-xs text-black"
-                          placeholder="Search for a product" 
-                    />  
-                  </li> */}
                 </ul>
               </section>
             </div>
@@ -185,6 +176,7 @@ const Navbar = () => {
           </MarginWrapper>
           <img
             src="/assets/শালুক.png"
+            loading="lazy"
             className="sm:w-24 w-16 absolute sm:top-10 top-16 right-10 sm:right-8"
             alt=""
           />
