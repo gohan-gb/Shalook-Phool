@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <>
       <nav>
-        <div className="bg-green w-[100%] h-auto text-white fixed">
+        <div className="z-10 fixed bg-green w-[100%] h-auto text-white">
           <img
             src="/assets/alpona_2345.png"
             loading="lazy"
@@ -34,7 +34,7 @@ const Navbar = () => {
               <section className="w-[33%] justify-start hidden lg:block">
                 <ul className="flex items-center gap-10">
                   <NavLink
-                    to="/product"
+                    to="/products"
                     className={({ isActive }) =>
                       `${isActive ? "text-[#001800]" : "text-white"}`
                     }
@@ -140,7 +140,7 @@ const Navbar = () => {
                   <li className="hover:text-[#001800]">Home</li>
                 </NavLink>
                 <NavLink
-                  to="/product"
+                  to="/products"
                   className={({ isActive }) =>
                     `${isActive ? "text-[#001800]" : "text-white"}`
                   }
