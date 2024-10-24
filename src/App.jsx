@@ -7,6 +7,7 @@ import Products from "./pages/products/Products"
 import About from "./pages/about/About"
 import Gallery from "./pages/gallery/Gallery"
 import Order from "./pages/order/Order"
+import SingleProduct from "./pages/products/SingleProduct";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>
     </main>
     <Footer />

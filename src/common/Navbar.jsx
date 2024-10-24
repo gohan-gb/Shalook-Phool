@@ -4,11 +4,15 @@ import { NavLink, Link } from "react-router-dom";
 import { CiMenuBurger, CiSearch } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
+import { productData } from "../data/productData";
+import { LuIndianRupee } from "react-icons/lu";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(true);
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false);
+  const [searchKey, setSearchKey] = useState('')
+
 
   const handleNavbar = () => {
     setHamburger(!hamburger);
@@ -18,11 +22,15 @@ const Navbar = () => {
   const handleSearch = () => {
     setSearch(!search);
   };
+  const handleSearchKey = (e) => {
+    setSearchKey(e.target.value)
+  }
+  console.log(searchKey)
 
   return (
     <>
       <nav>
-        <div className="bg-green w-[100%] h-auto text-white fixed">
+        <div className="z-10 fixed bg-green w-[100%] h-auto text-white">
           <img
             src="/assets/alpona_2345.png"
             loading="lazy"
@@ -34,7 +42,7 @@ const Navbar = () => {
               <section className="w-[33%] justify-start hidden lg:block">
                 <ul className="flex items-center gap-10">
                   <NavLink
-                    to="/product"
+                    to="/products"
                     className={({ isActive }) =>
                       `${isActive ? "text-[#001800]" : "text-white"}`
                     }
@@ -71,10 +79,12 @@ const Navbar = () => {
 
               <section className="w-[33%] flex justify-center ">
                 <Link to={"/"}>
-                  <img src="/assets/Logo.png" 
-                  loading="lazy"
-                  className="w-20" 
-                  alt="logo" />
+                  <img
+                    src="/assets/Logo.png"
+                    loading="lazy"
+                    className="w-20"
+                    alt="logo"
+                  />
                 </Link>
               </section>
               <section className="w-[33%] flex justify-end">
@@ -111,11 +121,66 @@ const Navbar = () => {
                     />
                   </button>
                   <input
-                    type="text"
+                    type="search"
+                    onChange={handleSearchKey}
                     placeholder="Search for a product"
                     className="h-10 border-2 border-solid border-green rounded-sm p-4 w-full"
                   />
                 </div>
+                {
+  searchKey && (
+    <div>
+      {
+        productData
+          .filter((product) => {
+            // Convert both searchKey and product fields to lowercase for case-insensitive comparison
+            const lowerCaseSearchKey = searchKey.toLowerCase();
+            return (
+              product.title.toLowerCase().includes(lowerCaseSearchKey) ||
+              product.category.toLowerCase().includes(lowerCaseSearchKey)
+            );
+          })
+          .slice(0, 5) // Take only the first 5 results
+          .map((product) => (
+            <Link to={`/products/${product.id}`} key={product.id}>
+              <div
+                onClick={handleSearch}
+                className="flex w-full gap-12 border-b-[1px] p-1 border-solid border-white"
+              >
+                <img
+                  src={product.images[0]}
+                  className="w-24 h-24 object-cover"
+                  alt="product"
+                />
+                <div>
+                  <h2 className="text-white font-bold"> {product.title} </h2>
+                  <h3 className="text-white font-bold flex flex-row">
+                    <LuIndianRupee /> {product.price}
+                  </h3>
+                </div>
+              </div>
+            </Link>
+          ))
+      }
+    </div>
+  )
+}
+
+                {/* {productData.map((product) => (
+                  <Link to={`/products/${product.id}`}>
+                  <div onClick={handleSearch} className="flex w-full gap-12 border-b-[1px] p-1 border-solid border-white">
+                    <img
+                      src={product.image}
+                      className="w-24 h-24 object-cover"
+                      alt="product"
+                    />
+                    <div>
+                      <h2 className="text-white font-bold"> {product.title} </h2>
+                      <h3 className="text-white font-bold flex flex-row"> <LuIndianRupee /> {product.price} </h3>
+                    </div>
+                  </div>
+                  </Link>
+                ))} */}
               </div>
             </section>
 
@@ -140,7 +205,7 @@ const Navbar = () => {
                   <li className="hover:text-[#001800]">Home</li>
                 </NavLink>
                 <NavLink
-                  to="/product"
+                  to="/products"
                   className={({ isActive }) =>
                     `${isActive ? "text-[#001800]" : "text-white"}`
                   }
