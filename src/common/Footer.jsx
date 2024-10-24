@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-green text-white w-full">
+    <footer className="relative bg-green text-white w-full">
       <MarginWrapper>
         <div className="flex sm:flex-row flex-col justify-between py-8 gap-10 px-0 sm:px-8">
           <div>
