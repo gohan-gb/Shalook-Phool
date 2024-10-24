@@ -127,29 +127,45 @@ const Navbar = () => {
                     className="h-10 border-2 border-solid border-green rounded-sm p-4 w-full"
                   />
                 </div>
-              {
-                searchKey && <div> 
-                  {
-                    productData.filter((product)=>{
-                      return product.title.toLowerCase().includes(searchKey) || product.category.toLowerCase().includes(searchKey)
-                    }).map((product) => (
-                      <Link to={`/products/${product.id}`}>
-                      <div onClick={handleSearch} className="flex w-full gap-12 border-b-[1px] p-1 border-solid border-white">
-                        <img
-                          src={product.image}
-                          className="w-24 h-24 object-cover"
-                          alt="product"
-                        />
-                        <div>
-                          <h2 className="text-white font-bold"> {product.title} </h2>
-                          <h3 className="text-white font-bold flex flex-row"> <LuIndianRupee /> {product.price} </h3>
-                        </div>
-                      </div>
-                      </Link>
-                    )).slice(0,5)
-                  }
+                {
+  searchKey && (
+    <div>
+      {
+        productData
+          .filter((product) => {
+            // Convert both searchKey and product fields to lowercase for case-insensitive comparison
+            const lowerCaseSearchKey = searchKey.toLowerCase();
+            return (
+              product.title.toLowerCase().includes(lowerCaseSearchKey) ||
+              product.category.toLowerCase().includes(lowerCaseSearchKey)
+            );
+          })
+          .slice(0, 5) // Take only the first 5 results
+          .map((product) => (
+            <Link to={`/products/${product.id}`} key={product.id}>
+              <div
+                onClick={handleSearch}
+                className="flex w-full gap-12 border-b-[1px] p-1 border-solid border-white"
+              >
+                <img
+                  src={product.images[0]}
+                  className="w-24 h-24 object-cover"
+                  alt="product"
+                />
+                <div>
+                  <h2 className="text-white font-bold"> {product.title} </h2>
+                  <h3 className="text-white font-bold flex flex-row">
+                    <LuIndianRupee /> {product.price}
+                  </h3>
                 </div>
-              }
+              </div>
+            </Link>
+          ))
+      }
+    </div>
+  )
+}
+
                 {/* {productData.map((product) => (
                   <Link to={`/products/${product.id}`}>
                   <div onClick={handleSearch} className="flex w-full gap-12 border-b-[1px] p-1 border-solid border-white">
