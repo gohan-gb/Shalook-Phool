@@ -64,10 +64,10 @@ const FeatureProducts = ({title, data}) => {
 
   return (
     <>
-      <div>
+      <div className="mb-12">
         <MarginWrapper>
           <div>
-            <h2 className="heading text-brown text-center mb-12">
+            <h2 className="heading text-brown text-center mb-8">
               {title}
             </h2>
           </div>
