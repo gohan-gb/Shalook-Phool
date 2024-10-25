@@ -4,12 +4,13 @@ import { LuIndianRupee } from "react-icons/lu";
 const ProductCard = ({ 
   title='Lorem ipsum dolor sit', 
   price=499, 
-  image='https://images.pexels.com/photos/7276943/pexels-photo-7276943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }) => {
+  image='https://images.pexels.com/photos/7276943/pexels-photo-7276943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+}) => {
 
 
     const handleWhatsapp = () => {
 
-      const message = `shalookphool.in Please order ${title} this for me`
+      const message = `shalookphool.in Please order ${title} for me`
 
       const whatsappUrl = `https://wa.me/+48794231051?text=${encodeURIComponent(message)}`
 
