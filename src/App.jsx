@@ -2,12 +2,13 @@ import React from "react";
 import { Route, Routes } from 'react-router-dom'
 import Navbar from "./common/Navbar";
 import Footer from "./common/Footer";
-import Home from "./pages/home/Home"
+import Home from "./pages/home/Components/Home";
 import Products from "./pages/products/Products"
 import About from "./pages/about/About"
 import Gallery from "./pages/gallery/Gallery"
 import Order from "./pages/order/Order"
 import SingleProduct from "./pages/products/SingleProduct";
+
 
 function App() {
   return (
