@@ -5,6 +5,17 @@ const ProductCard = ({
   title='Lorem ipsum dolor sit', 
   price=499, 
   image='https://images.pexels.com/photos/7276943/pexels-photo-7276943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }) => {
+
+
+    const handleWhatsapp = () => {
+
+      const message = `shalookphool.in Please order ${title} this for me`
+
+      const whatsappUrl = `https://wa.me/+48794231051?text=${encodeURIComponent(message)}`
+
+      window.open(whatsappUrl, '_blank');
+    }
+
   return (
     <>
       <article>
@@ -23,7 +34,9 @@ const ProductCard = ({
             </h3>
           </div>
 
-          <button className="bg-[#25d366] sm:w-auto w-24 rounded-sm p-1 hover:drop-shadow-2xl duration-300 sm:text-sm text-xs font-semibold">
+          <button
+          onClick={handleWhatsapp}
+          className="bg-[#25d366] sm:w-auto w-24 rounded-sm p-1 hover:drop-shadow-2xl duration-300 sm:text-sm text-xs font-semibold">
             {" "}
             Order via whatsapp{" "}
           </button>
