@@ -17,12 +17,21 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
 
 const SingleProduct = () => {
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const { id } = useParams();
 
   const singleProduct = productData.find((product) => product.id == id);
 
+  const handleWhatsapp = () => {
+
+    const message = `shalookphool.in Please order ${singleProduct.title} for me `
+
+    const whatsappUrl = `https://wa.me/+48794231051?text=${encodeURIComponent(message)}`
+
+    window.open(whatsappUrl, '_blank');
+  }
   return (
     <article className="pt-40 pb-12 text-brown">
       <MarginWrapper>
@@ -66,7 +75,7 @@ const SingleProduct = () => {
             </h3>
             <p className="text-justify">{singleProduct.description}</p>
 
-            <button className="bg-[#25d366] mt-4 text-white rounded-sm p-1 hover:drop-shadow-2xl duration-300 text-sm font-semibold">
+            <button onClick={handleWhatsapp} className="bg-[#25d366] mt-4 text-white rounded-sm p-1 hover:drop-shadow-2xl duration-300 text-sm font-semibold">
               Order via whatsapp
             </button>
           </section>

@@ -35,10 +35,10 @@ const CategorySection = () => {
   return (
     <div className='mb-12'>
       <MarginWrapper>
-        <div>
+        <div className='mb-8'>
           <h1 className="heading text-center text-brown">Shop by Category</h1>
         </div>
-        <div className="py-8 rounded-lg overflow-hidden">
+        <div className=" rounded-lg overflow-hidden">
           <motion.div
             className="flex sm:justify-center justify-between items-center space-x-4 xl:space-x-[-28px] p-4 cursor-grab" // Using space-x to control the gap
             drag="x" // Allows horizontal dragging

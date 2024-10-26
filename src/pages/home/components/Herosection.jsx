@@ -1,6 +1,7 @@
 import React from 'react'
 import MarginWrapper from '../../../common/MarginWrapper'
 
+
 const HeroSection = () => {
   return (
 
@@ -35,6 +36,8 @@ const HeroSection = () => {
       <div className='mt-8 sm:mt-12'>
         <img src="/assets/cover.jpg" alt="Cover Image" className='w-full rounded-s-full rounded-e-full'/>
       </div>
+      
+      
     </div>
  
  

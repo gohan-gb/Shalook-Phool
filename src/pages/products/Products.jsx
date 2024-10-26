@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   return (
-    <div className="pt-36 pb-12">
+    <div className="pt-[114px] pb-12">
+      <img src="/assets/cover.jpg" alt="Cover Image" className='w-full rounded-full mb-4 sm:mb-12'/>
       <MarginWrapper>
         <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
 
@@ -24,11 +25,6 @@ const Products = () => {
             )
             } )
           }
-          {/* <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard /> */}
         </div>
       </MarginWrapper>
     </div>
