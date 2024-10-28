@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroSection from './HeroSection'
+import HeroSection from './Herosection'
 import CategorySection from './CategorySection'
 import FeatureProducts from './FeatureProducts'
 import { productData } from '../../../data/productData'
