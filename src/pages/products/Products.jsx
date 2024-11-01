@@ -25,11 +25,6 @@ const Products = () => {
             )
             } )
           }
-          {/* <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard /> */}
         </div>
       </MarginWrapper>
     </div>
