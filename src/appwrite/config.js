@@ -57,19 +57,6 @@ export class Config {
         }
     };
 
-    // async uploadFileWithCategory(file, productName, decription, discountOption, actPrice, discPrice, categoryOne, categoryTwo) {
-    //     try {
-    //         const fileResponse = await this.uploadFile(file); // Upload file
-    //         if (fileResponse) {
-    //             const metadata = await this.storeFileMetadata(fileResponse.$id, productName, decription, discountOption, actPrice, discPrice, categoryOne, categoryTwo); // Store category metadata
-    //             console.log("File and metadata stored successfully:", metadata);
-    //         }
-    //     } catch (error) {
-    //         console.log("Appwrite service :: uploadFileWithCategory :: error", error);
-    //         throw error
-    //     }
-    // };
-
     async uploadFileWithCategory(title, price, discountOption, discPrice, images, description, category, subCategory) { 
         try {
             // Array to hold the file IDs
@@ -103,16 +90,42 @@ export class Config {
         }
     }
 
-    async getproductsforCategories(category) {
+    async getProductsForCategories(category) {
         try {
-            const productforCategories = await this.databases.listDocuments(
+            const productForCategories = await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                [Query.equal('category', category)] 
+                [Query.equal('category', category)]
             );
-            return productforCategories;
+    
+            // Fetch product data
+            const productdata = productForCategories.documents;
+    
+            // Map through products and fetch image links for each product
+            const productsWithImageLinks = await Promise.all(productdata.map(async product => {
+                const imageLinks = await Promise.all(product.images.map(imageId => this.getFile(imageId)));
+                return {
+                    ...product,
+                    images: imageLinks // Replace image IDs with their corresponding links
+                };
+            }));
+
+            const productData = productsWithImageLinks.map((product) => ({
+                id: product.$id,
+                title: product.title,
+                price: product.price,
+                isDiscount: product.discountOption,
+                discountedPrice: product.discPrice,
+                images: product.images, // Assuming `images` is an array of URLs
+                description: product.description,
+                category: product.category,
+                subCategory: product.subCategory
+            }));
+            console.log(productData);
+            return productData; // Return products with image links
+    
         } catch (error) {
-            console.log("Appwrite service :: getproductsforCategories :: error", error);
+            console.log("Appwrite service :: getProductsForCategories :: error", error);
             throw error;
         }
     }
@@ -124,9 +137,73 @@ export class Config {
                 conf.appwriteCollectionId,
                 [Query.equal('subCategory', subCategory)] 
             );
-            return productforsubCategories;
+             // Fetch product data
+             const productdata = productforsubCategories.documents;
+    
+             // Map through products and fetch image links for each product
+             const productsWithImageLinks = await Promise.all(productdata.map(async product => {
+                 const imageLinks = await Promise.all(product.images.map(imageId => this.getFile(imageId)));
+                 return {
+                     ...product,
+                     images: imageLinks // Replace image IDs with their corresponding links
+                 };
+             }));
+ 
+             const productData = productsWithImageLinks.map((product) => ({
+                 id: product.$id,
+                 title: product.title,
+                 price: product.price,
+                 isDiscount: product.discountOption,
+                 discountedPrice: product.discPrice,
+                 images: product.images, // Assuming `images` is an array of URLs
+                 description: product.description,
+                 category: product.category,
+                 subCategory: product.subCategory
+             }));
+             console.log(productData);
+             return productData; // Return products with image links
         } catch (error) {
             console.log("Appwrite service :: getproductsforsubCategories :: error", error);
+            throw error;
+        }
+    }
+    
+    async getProducts(catName, category) {
+        try {
+            const productForCategories = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                [Query.equal(catName, category)]
+            );
+    
+            // Fetch product data
+            const productdata = productForCategories.documents;
+    
+            // Map through products and fetch image links for each product
+            const productsWithImageLinks = await Promise.all(productdata.map(async product => {
+                const imageLinks = await Promise.all(product.images.map(imageId => this.getFile(imageId)));
+                return {
+                    ...product,
+                    images: imageLinks // Replace image IDs with their corresponding links
+                };
+            }));
+
+            const productData = productsWithImageLinks.map((product) => ({
+                id: product.$id,
+                title: product.title,
+                price: product.price,
+                isDiscount: product.discountOption,
+                discountedPrice: product.discPrice,
+                images: product.images, // Assuming `images` is an array of URLs
+                description: product.description,
+                category: product.category,
+                subCategory: product.subCategory
+            }));
+            console.log(productData);
+            return productData; // Return products with image links
+    
+        } catch (error) {
+            console.log("Appwrite service :: getProducts :: error", error);
             throw error;
         }
     }
@@ -137,12 +214,35 @@ export class Config {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId
             );
-            // Extract unique categories from the documents
             const categories = [...new Set(allDocuments.documents.map(doc => doc.category))];
             return categories;
         } catch (error) {
             console.log("Appwrite service :: getAllCategories :: error", error);
             throw error;
+        }
+    }
+
+    async getAllsubCategories() {
+        try {
+            const allDocuments = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId
+            );
+            const subcategories = [...new Set(allDocuments.documents.map(doc => doc.subCategory))];
+            return subcategories;
+        } catch (error) {
+            console.log("Appwrite service :: getAllCategories :: error", error);
+            throw error;
+        }
+    }
+
+    async getFile (fileId) {
+        try {
+            const result = this.bucket.getFileView(conf.appwriteBucketId, fileId);
+            return result
+        } catch (error) {
+            console.log("Appwrite serive :: getFile :: error", error);
+            throw error; 
         }
     }
 }
