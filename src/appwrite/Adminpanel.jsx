@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 import FileUploadForm from './FileUploadForm';
 import config from './config';
+import ProductCard from '../components/ProductCard';
 
 function AdminPanel() {
     const [activeForm, setActiveForm] = useState(null);
+    const [products, setProducts] = useState([]); // State to store fetched products
 
     const handleFormOpen = (formType) => {
         setActiveForm(formType);
     };
 
-    // const FetchProducts = async (category) => {
+    // const FetchProductsforsubCategories = async (category) => {
     //     try {
-    //         const products = await config.getproductsforsubCategories(category); // Await the async call
-    //         console.log("Fetched products:", products.documents); // Log after the promise resolves
+    //         const fetchedProducts = await config.getproductsforsubCategories(category);
+    //         setProducts(fetchedProducts); // Store the fetched products in state
     //     } catch (error) {
     //         console.error("Error fetching products:", error);
-    //     }
-    // };
-
-    // const FetchAllCategories = async () => {
-    //     try {
-    //         const categories = await config.getAllCategories();
-    //         console.log("Fetched categories:", categories);
-    //     } catch (error) {
-    //         console.error("Error fetching categories:", error);
     //     }
     // };
 
@@ -42,8 +35,7 @@ function AdminPanel() {
             {/* <div className="space-x-4 mb-8">
                 <button 
                     className="bg-black text-white font-bold py-2 px-4 rounded"
-                    // onClick={() => FetchProducts("women")}
-                    onClick={FetchAllCategories}
+                    onClick={() => FetchProductsforsubCategories("women")}
                 >
                     Fetch
                 </button>
@@ -52,6 +44,18 @@ function AdminPanel() {
             <div className="w-full max-w-lg">
                 {activeForm === 'add' && <FileUploadForm />}
             </div>
+
+            {/* Displaying the products */}
+            {/* <div className="flex flex-wrap justify-center gap-4 mt-6">
+                {products.map((product, index) => (
+                    <ProductCard 
+                        key={index} 
+                        title={product.title} 
+                        price={product.price} 
+                        image={product.images[0]} // Adjust to your actual image field
+                    />
+                ))}
+            </div> */}
         </div>
     );
 }
