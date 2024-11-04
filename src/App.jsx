@@ -2,12 +2,16 @@ import React from "react";
 import { Route, Routes } from 'react-router-dom'
 import Navbar from "./common/Navbar";
 import Footer from "./common/Footer";
-import Home from "./pages/home/components/Home"
+import Home from "./pages/home/Home"
+// import Products from "./pages/products/Products"
+import Products from "./appwrite/Products"
+import Home from "./pages/home/Components/Home";
 import Products from "./pages/products/Products"
 import About from "./pages/about/About"
 import Gallery from "./pages/gallery/Gallery"
 import Order from "./pages/order/Order"
 import SingleProduct from "./pages/products/SingleProduct";
+import AdminPanel from "./appwrite/Adminpanel";
 
 
 function App() {
@@ -23,6 +27,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/order" element={<Order />} />
         <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/admin-panel" element={<AdminPanel />} />
       </Routes>
     </main>
     <Footer />
