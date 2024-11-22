@@ -12,7 +12,7 @@ const ProductCard = ({
 
       const message = `shalookphool.in Please order ${title} for me`
 
-      const whatsappUrl = `https://wa.me/+48794231051?text=${encodeURIComponent(message)}`
+      const whatsappUrl = `https://wa.me/+919330124342?text=${encodeURIComponent(message)}`
 
       window.open(whatsappUrl, '_blank');
     }
